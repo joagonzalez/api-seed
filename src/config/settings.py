@@ -6,7 +6,7 @@ config = {
         'DEBUG': True,
         'RELOAD': True,
         'LOG_LEVEL': 'debug',
-        'WORKERS': 2
+        'WORKERS': 5
     },
     'API': {
         'TITLE': 'REST API',

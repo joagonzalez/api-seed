@@ -2,6 +2,9 @@ import uvicorn
 
 from src.config.settings import config
 
+# TODO jwt, sqlalchemy, usersClass, 
+# TODO incorporar clases apis cisco, teams, formio, infoblox, modelos, tests
+
 if __name__ == '__main__':
     uvicorn.run(    
         "src:app",

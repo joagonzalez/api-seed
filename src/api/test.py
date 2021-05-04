@@ -1,7 +1,7 @@
 import time
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 
-from src.models.modelName import ModelName
+from src.schemas.schemaTest import schemaName
 
 
 router = APIRouter()
@@ -14,13 +14,24 @@ async def root():
 async def get(item: int):
     return {"item": item}
 
+@router.post("/item/",tags=['users'])
+async def edit(item: int):
+    return {"item": item}
 
-@router.get("/models/{model_name}")
-async def get_model(model_name: ModelName):
-    if model_name == ModelName.alexnet:
-        return {"model_name": model_name, "message": "Deep Learning FTW!"}
+@router.put("/item/",tags=['users'])
+async def edit(item: int):
+    return {"item": item}
 
-    if model_name.value == "lenet":
-        return {"model_name": model_name, "message": "LeCNN all the images"}
+@router.delete("/item/",tags=['users'])
+async def edit(item: int):
+    return {"item": item}
 
-    return {"model_name": model_name, "message": "Have some residuals"}
+@router.get("/schemas/{schema_name}")
+async def get_model(schema_name: schemaName):
+    if schema_name == schemaName.alexnet:
+        return {"model_name": schema_name, "message": "Deep Learning FTW!"}
+
+    if schema_name.value == "lenet":
+        return {"model_name": schema_name, "message": "LeCNN all the images"}
+
+    return {"model_name": schema_name, "message": "Have some residuals"}
