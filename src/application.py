@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 
 from src.config.settings import config
 from src.constants.prompt import PROMPT
-from src.api.test import router as testApi
+from src.api.users import router as users
 
 class Application(FastAPI):
     '''
@@ -27,4 +27,4 @@ class Application(FastAPI):
 
     def configureApis(self):
         ''' REGISTER API ROUTERS '''
-        self.include_router(testApi, prefix='/test')    
+        self.include_router(users, prefix='/users')    

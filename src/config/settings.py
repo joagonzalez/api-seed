@@ -1,7 +1,7 @@
 config = {
     'ENVIRONMENT': 'local',
     'SERVER': {
-        'HOSTNAME': '127.0.0.1',
+        'HOSTNAME': '0.0.0.0',
         'PORT': 5000,
         'DEBUG': True,
         'RELOAD': True,
@@ -9,9 +9,9 @@ config = {
         'WORKERS': 5
     },
     'API': {
-        'TITLE': 'REST API',
+        'TITLE': 'REST API SEED',
         'DESCRIPTION': 'Minimal rest api setup',
-        'VERSION': '0.1.3',
+        'VERSION': '0.1.0',
     },
     'SWAGGER': {
         'DOCS_URL': '/docs',

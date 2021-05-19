@@ -7,9 +7,12 @@
 
 This service implements a scalable rest-api seed using fastApi. Parametriztion for the app is loaded from *src/config/settings.py*. Different endpoints were develped in order to have templates for a variety of features, for example:
 
+- Users CRUD: SQLAlchemy and Pydantic models
 - Async tasks: Celery with RabbitMQ as message broker
-- Users CRUD: SQLAlchemy and Flask models
 - Microsoft Teams: Pymsteams and requests
+- CI CD
+- docker-compose file
+- traefik proxy para monitoreo
 
 **Content**
 - [Getting started](#getting-started)
