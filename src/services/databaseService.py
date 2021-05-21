@@ -1,11 +1,14 @@
 import os
 from sqlalchemy import exc
+from datetime import datetime
+
 from src.models.user import User
 from src.models.blog import Blog
-from src.config.settings import config
-from src.services.security.hashing import Hash
 from src.database import SessionLocal
+from src.services.security.hashing import Hash
 from src.services.loggerService import loggerService
+from src.config.settings import config
+
 
 class Database():
 
@@ -15,21 +18,37 @@ class Database():
 
     def init_defaults(self, db):
         try:
-            NETOPS_PASS = os.environ['NETOPS_PASS']
+            PASSWORD = os.environ['PASSWORD']
         except Exception as e:
-            loggerService.warning('NETOPS_PASS missing!')
-            NETOPS_PASS = config['API']['PASSWORD']
-        hashed_password = Hash.bcrypt(NETOPS_PASS)
+            loggerService.warning('PASSWORD missing!')
+            
+            USERNAME = config['API']['USER']['USERNAME']
+            PASSWORD = config['API']['USER']['PASSWORD']
+            NAME = config['API']['USER']['NAME']
+            LASTNAME = config['API']['USER']['LASTNAME']
+            EMAIL = config['API']['USER']['EMAIL']
+            ENABLED = config['API']['USER']['ENABLED']
+            CREATED = datetime(datetime.today().year, datetime.today().month, datetime.today().day)
+
+        hashed_password = Hash.bcrypt(PASSWORD)
         user = {
-            'username': config['API']['USERNAME'],
-            'password': hashed_password
+            'username': USERNAME,
+            'password': hashed_password,
+            'name': NAME,
+            'lastname': LASTNAME,
+            'email': EMAIL,
+            'enabled': ENABLED,
+            'created': CREATED
         }
+
         self.create_default_user(user, db)
 
 
     def create_default_user(self, user, db):
         new_user = User(
-            username=user['username'], password=user['password']
+            username=user['username'], password=user['password'],
+            name=user['name'], lastname=user['lastname'], email=user['email'],
+            enabled=user['enabled'], created=user['created']
         )
         
         try:

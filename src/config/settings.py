@@ -12,8 +12,14 @@ config = {
         'TITLE': 'REST API SEED',
         'DESCRIPTION': 'Minimal rest api setup',
         'VERSION': '1.0.0',
-        'USERNAME': 'netops',
-        'PASSWORD': 'netops_2021'
+        'USER': {
+            'USERNAME': 'netops',
+            'PASSWORD': 'netops_2021',
+            'NAME': 'Joaquin',
+            'LASTNAME': 'Gonzalez',
+            'EMAIL': 'joagonzalez@gmail.com',
+            'ENABLED': True
+        }
     },
     'SWAGGER': {
         'DOCS_URL': '/docs',
