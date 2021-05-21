@@ -5,10 +5,20 @@ clean:
 	coverage erase
 
 install:
-	/usr/bin/python3.8 -m pip install --upgrade -r requirements.txt
+	python -m pip install --upgrade -r requirements.txt
 
 lint:
-	/usr/bin/python3.8 -m flake8 src/
+	python -m flake8 src/
 
 run:
-	/usr/bin/python3.8 run.py
+	python run.py
+
+test:
+	echo "Implementar tests!"
+	# python -m pytest --cov=src ./ -vv
+
+build: 
+	docker build -t api-seed .
+
+prod:
+	docker run -it --net=host -p 5000:5000 api-seed
