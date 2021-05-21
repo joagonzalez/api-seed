@@ -1,5 +1,7 @@
+import os
 from sqlalchemy import exc
 from src.models.user import User
+from src.models.blog import Blog
 from src.config.settings import config
 from src.services.security.hashing import Hash
 from src.database import SessionLocal
@@ -15,14 +17,14 @@ class Database():
         try:
             NETOPS_PASS = os.environ['NETOPS_PASS']
         except Exception as e:
-            loggerService.error('NETOPS_PASS missing!')
+            loggerService.warning('NETOPS_PASS missing!')
             NETOPS_PASS = config['API']['PASSWORD']
         hashed_password = Hash.bcrypt(NETOPS_PASS)
-        netops_user = {
+        user = {
             'username': config['API']['USERNAME'],
             'password': hashed_password
         }
-        self.create_default_user(netops_user, db)
+        self.create_default_user(user, db)
 
 
     def create_default_user(self, user, db):
