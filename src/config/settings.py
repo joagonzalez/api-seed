@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+dotenv_path = os.getenv("NETWORK_API_DOTENV", os.path.join(os.path.dirname(__file__), ".env"))
+
+load_dotenv(dotenv_path, override=False)  # priorizes env vars (not .env file)
+
 config = {
     'ENVIRONMENT': 'local',
     'SERVER': {
@@ -44,5 +51,17 @@ config = {
         'LEVEL': 'DEBUG',
         'FORMAT': "%(asctime)s - %(name)s - %(process)s - %(levelname)s - %(message)s",
         'DATEFMT' : "%d-%b-%y %H:%M:%S" 
+    },
+    "VULN_API": {
+        "URL": os.getenv("VULN_API_URL", ""),
+        "OAUTH": os.getenv("VULN_API_OAUTH", ""),
+        "KEY": os.getenv("VULN_API_KEY", ""),
+        "SECRET": os.getenv("VULN_API_SECRET", "")    
+    },
+    "EOX_API": {
+        "URL": os.getenv("EOX_API_URL", ""),
+        "OAUTH": os.getenv("EOX_API_OAUTH", ""),
+        "KEY": os.getenv("EOX_API_KEY", ""),
+        "SECRET": os.getenv("EOX_API_SECRET", ""),   
     }
 }

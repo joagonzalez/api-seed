@@ -5,6 +5,8 @@ from src.config.settings import config
 from src.constants.prompt import PROMPT
 from src.api.users import router as users
 from src.api.blog import router as blog
+from src.api.eox import router as eox
+from src.api.vulnerabilities import router as vulnerabilities
 from src.api.authentication import router as authentication
 from src.services.databaseService import database
 from src.database import SessionLocal, Base, engine
@@ -39,7 +41,9 @@ class Application(FastAPI):
         self.include_router(authentication)    
         self.include_router(users, prefix='/users') 
         self.include_router(blog, prefix='/blog') 
-
+        self.include_router(vulnerabilities, prefix='/vulnerabilities')
+        self.include_router(eox, prefix='/eox')
+        
     def configureDB(self):
         ''' INIT SQLITE DB '''
         Base.metadata.create_all(engine)
